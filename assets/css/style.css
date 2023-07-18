@@ -1,0 +1,35 @@
+body {
+  width: 90%;
+  margin: 0 auto;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.lists-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+section {
+  width: 320px;
+}
+
+@media (max-width: 600px) {
+  section {
+    width: 100%;
+  }
+}
+
+section article:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.draggable {
+  cursor: move;
+}
