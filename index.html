@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kanban list</title>
+    <title>Kanban List</title>
 
     <!-- Bulma (make sure to use last updated version)-->
     <link
@@ -26,14 +26,10 @@
 
   <body>
     <header>
-      <h1 class="title is-1 my-5">Kanban list</h1>
+      <h1 class="title is-1 my-5">Kanban List</h1>
     </header>
 
-    <main>
-      <div id="lists-container" class="lists-container">
-        <!-- Ici on met les lists qu'on récupère du backend -->
-      </div>
-
+    <main id="lists-container">
       <!-- Add a list button -->
       <section class="message" id="add-list-card">
         <div class="message-header">
@@ -162,26 +158,13 @@
           </div>
 
           <div class="modal-card-body">
-            <label class="label" for="edit-card-title"
-              >Nouveau contenu de la carte</label
-            >
+            <label class="label">Nouveau contenu de la carte</label>
             <input
               class="input"
-              id="edit-card-title"
               type="text"
               name="title"
               placeholder="Contenu de la carte"
               required
-            />
-
-            <label class="label" for="edit-card-color"
-              >Nouvelle couleur de la carte</label
-            >
-            <input
-              class="input"
-              id="edit-card-color"
-              type="color"
-              name="color"
             />
           </div>
 
@@ -221,16 +204,52 @@
         </form>
       </div>
     </div>
+
+    <!-- Delete a card modal -->
+    <div class="modal" id="delete-list-modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <form>
+          <div class="modal-card-head">
+            <p class="modal-card-title">Suppression d'une liste</p>
+            <button
+              class="delete close"
+              type="button"
+              aria-label="close"
+            ></button>
+          </div>
+
+          <div class="modal-card-body">
+            <div class="label">
+              Attention. Vous êtes sur le point de supprimer cette liste ainsi
+              que toutes les cartes. Cette opération est irréversible.
+            </div>
+          </div>
+
+          <div class="modal-card-foot">
+            <button class="button is-danger">Supprimer</button>
+            <button class="button close" type="button">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 
   <!-- Template pour une liste -->
   <template id="list-template">
     <section class="message is-info" slot="list-id">
-      <div class="message-header draggable">
+      <div class="message-header">
         <div class="is-clickable" slot="list-name"></div>
-        <span class="icon is-clickable" slot="add-card-button"
-          ><i class="fas fa-plus"></i
-        ></span>
+        <div>
+          <span class="icon is-clickable" slot="add-card-button"
+            ><i class="fas fa-plus"></i
+          ></span>
+          <span
+            class="icon is-clickable has-text-danger"
+            slot="card-delete-button"
+            ><i class="fas fa-trash-alt"></i
+          ></span>
+        </div>
       </div>
 
       <div class="message-body" slot="list-content">
@@ -241,7 +260,7 @@
 
   <!-- Template pour une carte -->
   <template id="card-template">
-    <article class="card draggable" slot="card-id">
+    <article class="card" slot="card-id" draggable="true">
       <div class="card-header">
         <div
           class="card-header-title has-text-weight-medium"

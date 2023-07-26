@@ -1,4 +1,3 @@
-
 import {
   listenToClickOnAddListButton,
   listenToClicksOnModalClosingElements,
@@ -8,26 +7,26 @@ import {
   listenToSubmitOnAddCardForm,
   listenToSubmitOnEditCardForm,
   listenToSubmitOnDeleteCardForm,
-  listenToDragAndDropOnCards
+  listenToDragAndDropOnCards,
 } from "./cards.module.js";
 
 import {
   fetchAndDisplayListsAndCards,
   listenToSubmitOnAddListForm,
   listenToSubmitOnEditListForm,
-  listenToDragAndDropOnLists
+  listenToDragAndDropOnLists,
+  listenToSubmitOnDeleteListForm,
 } from "./lists.module.js";
 
-
 // Initialisation du JavaScript
-document.addEventListener("DOMContentLoaded", async () => { // Déclenche le callback lorsque l'intégralité du DOM est chargé
+document.addEventListener("DOMContentLoaded", async () => {
+  // Déclenche le callback lorsque l'intégralité du DOM est chargé
   listenToUserActions();
   await fetchAndDisplayListsAndCards();
 
   listenToDragAndDropOnLists();
   listenToDragAndDropOnCards();
 });
-
 
 function listenToUserActions() {
   listenToClickOnAddListButton();
@@ -37,6 +36,5 @@ function listenToUserActions() {
   listenToSubmitOnEditListForm();
   listenToSubmitOnEditCardForm();
   listenToSubmitOnDeleteCardForm();
+  listenToSubmitOnDeleteListForm();
 }
-
-
